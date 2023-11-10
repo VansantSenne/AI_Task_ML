@@ -36,15 +36,22 @@ X_resampled, y_resampled = ros.fit_resample(X_train, y_train)
 st.title("Model Evaluatie Applicatie")
 # Distributieplots
 st.write("Distributieplot voor Originele Dataset")
-plt.figure(figsize=(10, 6))
-sns.histplot(data=df, x=y, kde=True)  # Let op deze aanpassing
-plt.title(f'Distributie van {laatste_kolom} in Originele Dataset')
-st.pyplot()
+plt.figure(figsize=(8, 6)) 
+df[laatste_kolom].value_counts().plot(kind='bar', color='skyblue')
+plt.xlabel(laatste_kolom)
+plt.ylabel('Aantal waarnemingen')
+plt.title(f'Verdeling van {laatste_kolom}')
 
-st.write("Distributieplot na Oversampling")
-plt.figure(figsize=(10, 6))
-sns.histplot(data=pd.DataFrame({laatste_kolom: y_resampled}), x=laatste_kolom, kde=True)  # Let op deze aanpassing
-plt.title(f'Distributie van {laatste_kolom} na Oversampling')
+# Toon de plot in Streamlit
+st.pyplot()
+st.write("Distributieplot na oversampling")
+plt.figure(figsize=(8, 6)) 
+y_resampled.value_counts().plot(kind='bar', color='skyblue')
+plt.xlabel(y_resampled)
+plt.ylabel('Aantal waarnemingen')
+plt.title(f'Verdeling van {y_resampled}')
+
+# Toon de plot in Streamlit
 st.pyplot()
 # Opties om tussen modellen te schakelen
 selected_model = st.sidebar.selectbox("Selecteer Model", ["Gradient Boosting", "Support Vector Machine (SVM)", "Random Forest"])
