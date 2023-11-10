@@ -47,9 +47,9 @@ st.pyplot()
 st.write("Distributieplot na oversampling")
 plt.figure(figsize=(8, 6)) 
 y_resampled.value_counts().plot(kind='bar', color='skyblue')
-plt.xlabel(y_resampled)
+plt.xlabel(f'{last_column} (oversampled)')  # Aangepaste xlabel
 plt.ylabel('Aantal waarnemingen')
-plt.title(f'Verdeling van {y_resampled}')
+plt.title(f'Verdeling van {last_column} na oversampling')
 
 # Toon de plot in Streamlit
 st.pyplot()
