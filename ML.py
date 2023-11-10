@@ -43,6 +43,7 @@ plt.ylabel('Aantal waarnemingen')
 plt.title(f'Verdeling van {laatste_kolom}')
 
 # Toon de plot in Streamlit
+st.set_option('deprecation.showPyplotGlobalUse', False)
 st.pyplot()
 st.write("Distributieplot na oversampling")
 plt.figure(figsize=(8, 6)) 
@@ -52,6 +53,7 @@ plt.ylabel('Aantal waarnemingen')
 plt.title(f'Verdeling van {laatste_kolom } na oversampling')
 
 # Toon de plot in Streamlit
+st.set_option('deprecation.showPyplotGlobalUse', False)
 st.pyplot()
 # Opties om tussen modellen te schakelen
 selected_model = st.sidebar.selectbox("Selecteer Model", ["Gradient Boosting", "Support Vector Machine (SVM)", "Random Forest"])
