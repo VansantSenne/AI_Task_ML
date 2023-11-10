@@ -49,42 +49,14 @@ if selected_model == "Gradient Boosting":
     # Confusion Matrix
     cm = confusion_matrix(y_test, gradient_boosting_predictions)
     st.write("Confusion Matrix:")
-    st.pyplot(plt.figure(figsize=(8, 6)))
-    sns.heatmap(cm, annot=True, fmt='g', cmap='Blues')
-    plt.xlabel('Voorspelde waarden')
-    plt.ylabel('Werkelijke waarden')
-    plt.title('Confusion Matrix - Gradient Boosting model')
+    st.write(cm)
+    
+    # Heatmap
+    fig, ax = plt.subplots(figsize=(8, 6))
+    sns.heatmap(cm, annot=True, fmt='g', cmap='Blues', ax=ax)
+    ax.set_xlabel('Voorspelde waarden')
+    ax.set_ylabel('Werkelijke waarden')
+    ax.set_title('Confusion Matrix - Gradient Boosting model')
+    st.pyplot(fig)
 
-elif selected_model == "Support Vector Machine (SVM)":
-    # Training van het Support Vector Machine (SVM) model
-    svm_model = SVC(kernel='linear')
-    svm_model.fit(X_resampled, y_resampled)
-    svm_predictions = svm_model.predict(X_test)
-    accuracy = accuracy_score(y_test, svm_predictions) * 100
-    st.write("Support Vector Machine Accuracy:", accuracy, '%')
-
-    # Confusion Matrix
-    cm = confusion_matrix(y_test, svm_predictions)
-    st.write("Confusion Matrix:")
-    st.pyplot(plt.figure(figsize=(8, 6)))
-    sns.heatmap(cm, annot=True, fmt='g', cmap='Blues')
-    plt.xlabel('Voorspelde waarden')
-    plt.ylabel('Werkelijke waarden')
-    plt.title('Confusion Matrix - SVM model')
-
-elif selected_model == "Random Forest":
-    # Training van het Random Forest Classifier model
-    random_forest_model = RandomForestClassifier()
-    random_forest_model.fit(X_resampled, y_resampled)
-    random_forest_predictions = random_forest_model.predict(X_test)
-    accuracy = accuracy_score(y_test, random_forest_predictions) * 100
-    st.write("Random Forest Accuracy:", accuracy, '%')
-
-    # Confusion Matrix
-    cm = confusion_matrix(y_test, random_forest_predictions)
-    st.write("Confusion Matrix:")
-    st.pyplot(plt.figure(figsize=(8, 6)))
-    sns.heatmap(cm, annot=True, fmt='g', cmap='Blues')
-    plt.xlabel('Voorspelde waarden')
-    plt.ylabel('Werkelijke waarden')
-    plt.title('Confusion Matrix - Random Forest Model')
+# Herhaal vergelijkbare stappen voor de andere modellen
