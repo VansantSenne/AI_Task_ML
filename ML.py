@@ -7,6 +7,7 @@ from imblearn.over_sampling import RandomOverSampler
 from sklearn.svm import SVC
 from sklearn.metrics import accuracy_score, confusion_matrix
 from sklearn.ensemble import RandomForestClassifier, GradientBoostingClassifier
+import seaborn as sns
 
 # Laden van de dataset
 dataFile = 'auto-mpg.data'
@@ -48,18 +49,11 @@ if selected_model == "Gradient Boosting":
     # Confusion Matrix
     cm = confusion_matrix(y_test, gradient_boosting_predictions)
     st.write("Confusion Matrix:")
-    st.write(cm)
     st.pyplot(plt.figure(figsize=(8, 6)))
-    plt.imshow(cm, interpolation='nearest', cmap=plt.cm.Blues)
-    plt.title('Confusion Matrix - Gradient Boosting model')
-    plt.colorbar()
-    classes = np.unique(y_test)
-    tick_marks = np.arange(len(classes))
-    plt.xticks(tick_marks, classes)
-    plt.yticks(tick_marks, classes)
+    sns.heatmap(cm, annot=True, fmt='g', cmap='Blues')
     plt.xlabel('Voorspelde waarden')
     plt.ylabel('Werkelijke waarden')
-    plt.show()
+    plt.title('Confusion Matrix - Gradient Boosting model')
 
 elif selected_model == "Support Vector Machine (SVM)":
     # Training van het Support Vector Machine (SVM) model
@@ -72,18 +66,11 @@ elif selected_model == "Support Vector Machine (SVM)":
     # Confusion Matrix
     cm = confusion_matrix(y_test, svm_predictions)
     st.write("Confusion Matrix:")
-    st.write(cm)
     st.pyplot(plt.figure(figsize=(8, 6)))
-    plt.imshow(cm, interpolation='nearest', cmap=plt.cm.Blues)
-    plt.title('Confusion Matrix - SVM model')
-    plt.colorbar()
-    classes = np.unique(y_test)
-    tick_marks = np.arange(len(classes))
-    plt.xticks(tick_marks, classes)
-    plt.yticks(tick_marks, classes)
+    sns.heatmap(cm, annot=True, fmt='g', cmap='Blues')
     plt.xlabel('Voorspelde waarden')
     plt.ylabel('Werkelijke waarden')
-    plt.show()
+    plt.title('Confusion Matrix - SVM model')
 
 elif selected_model == "Random Forest":
     # Training van het Random Forest Classifier model
@@ -96,15 +83,8 @@ elif selected_model == "Random Forest":
     # Confusion Matrix
     cm = confusion_matrix(y_test, random_forest_predictions)
     st.write("Confusion Matrix:")
-    st.write(cm)
     st.pyplot(plt.figure(figsize=(8, 6)))
-    plt.imshow(cm, interpolation='nearest', cmap=plt.cm.Blues)
-    plt.title('Confusion Matrix - Random Forest Model')
-    plt.colorbar()
-    classes = np.unique(y_test)
-    tick_marks = np.arange(len(classes))
-    plt.xticks(tick_marks, classes)
-    plt.yticks(tick_marks, classes)
+    sns.heatmap(cm, annot=True, fmt='g', cmap='Blues')
     plt.xlabel('Voorspelde waarden')
     plt.ylabel('Werkelijke waarden')
-    plt.show()
+    plt.title('Confusion Matrix - Random Forest Model')
