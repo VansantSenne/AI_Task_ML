@@ -43,8 +43,13 @@ if selected_model == "Gradient Boosting":
     gradient_boosting_model = GradientBoostingClassifier()
     gradient_boosting_model.fit(X_resampled, y_resampled)
     gradient_boosting_predictions = gradient_boosting_model.predict(X_test)
-    st.write("Gradient Boosting Accuracy:", accuracy_score(y_test, gradient_boosting_predictions) * 100, '%')
+    accuracy = accuracy_score(y_test, gradient_boosting_predictions) * 100
+    st.write("Gradient Boosting Accuracy:", accuracy, '%')
+
+    # Confusion Matrix
     cm = confusion_matrix(y_test, gradient_boosting_predictions)
+    st.write("Confusion Matrix:")
+    st.write(cm)
     st.pyplot(plt.figure(figsize=(8, 6)))
     sns.heatmap(cm, annot=True, fmt='g', cmap='Blues')
     plt.xlabel('Voorspelde waarden')
@@ -56,10 +61,15 @@ elif selected_model == "Support Vector Machine (SVM)":
     svm_model = SVC(kernel='linear')
     svm_model.fit(X_resampled, y_resampled)
     svm_predictions = svm_model.predict(X_test)
-    st.write("Support Vector Machine Accuracy:", accuracy_score(y_test, svm_predictions) * 100, '%')
-    cm2 = confusion_matrix(y_test, svm_predictions)
+    accuracy = accuracy_score(y_test, svm_predictions) * 100
+    st.write("Support Vector Machine Accuracy:", accuracy, '%')
+
+    # Confusion Matrix
+    cm = confusion_matrix(y_test, svm_predictions)
+    st.write("Confusion Matrix:")
+    st.write(cm)
     st.pyplot(plt.figure(figsize=(8, 6)))
-    sns.heatmap(cm2, annot=True, fmt='g', cmap='Blues')
+    sns.heatmap(cm, annot=True, fmt='g', cmap='Blues')
     plt.xlabel('Voorspelde waarden')
     plt.ylabel('Werkelijke waarden')
     plt.title('Confusion Matrix - SVM model')
@@ -69,10 +79,15 @@ elif selected_model == "Random Forest":
     random_forest_model = RandomForestClassifier()
     random_forest_model.fit(X_resampled, y_resampled)
     random_forest_predictions = random_forest_model.predict(X_test)
-    st.write("Random Forest Accuracy:", accuracy_score(y_test, random_forest_predictions) * 100, '%')
-    cm3 = confusion_matrix(y_test, random_forest_predictions)
+    accuracy = accuracy_score(y_test, random_forest_predictions) * 100
+    st.write("Random Forest Accuracy:", accuracy, '%')
+
+    # Confusion Matrix
+    cm = confusion_matrix(y_test, random_forest_predictions)
+    st.write("Confusion Matrix:")
+    st.write(cm)
     st.pyplot(plt.figure(figsize=(8, 6)))
-    sns.heatmap(cm3, annot=True, fmt='g', cmap='Blues')
+    sns.heatmap(cm, annot=True, fmt='g', cmap='Blues')
     plt.xlabel('Voorspelde waarden')
     plt.ylabel('Werkelijke waarden')
     plt.title('Confusion Matrix - Random Forest Model')
