@@ -37,8 +37,20 @@ st.title("Model Evaluatie Applicatie")
 
 # Opties om tussen modellen te schakelen
 selected_model = st.sidebar.selectbox("Selecteer Model", ["Gradient Boosting", "Support Vector Machine (SVM)", "Random Forest"])
+if selected_option == "Distributieplot":
+    # Distributieplots
+    st.subheader("Distributieplot voor Originele Dataset")
+    plt.figure(figsize=(10, 6))
+    sns.histplot(y, kde=True)
+    plt.title(f'Distributie van {laatste_kolom} in Originele Dataset')
+    st.pyplot()
 
-if selected_model == "Gradient Boosting":
+    st.subheader("Distributieplot na Oversampling")
+    plt.figure(figsize=(10, 6))
+    sns.histplot(y_resampled, kde=True)
+    plt.title(f'Distributie van {laatste_kolom} na Oversampling')
+    st.pyplot()
+elif selected_model == "Gradient Boosting":
     # Training van het Gradient Boosting Classifier model
     gradient_boosting_model = GradientBoostingClassifier()
     gradient_boosting_model.fit(X_resampled, y_resampled)
