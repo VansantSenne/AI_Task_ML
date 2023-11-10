@@ -34,18 +34,16 @@ X_resampled, y_resampled = ros.fit_resample(X_train, y_train)
 
 # Streamlit-applicatie
 st.title("Model Evaluatie Applicatie")
-st.subheader("Exploratory Data Analysis (EDA)")
-
 # Distributieplots
 st.write("Distributieplot voor Originele Dataset")
 plt.figure(figsize=(10, 6))
-sns.histplot(y, kde=True)
+sns.histplot(data=df, x=y, kde=True)  # Let op deze aanpassing
 plt.title(f'Distributie van {laatste_kolom} in Originele Dataset')
 st.pyplot()
 
 st.write("Distributieplot na Oversampling")
 plt.figure(figsize=(10, 6))
-sns.histplot(y_resampled, kde=True)
+sns.histplot(data=pd.DataFrame({laatste_kolom: y_resampled}), x=laatste_kolom, kde=True)  # Let op deze aanpassing
 plt.title(f'Distributie van {laatste_kolom} na Oversampling')
 st.pyplot()
 # Opties om tussen modellen te schakelen
